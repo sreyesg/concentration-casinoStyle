@@ -85,7 +85,7 @@ const init = () => {
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
 const getPlayerChoiceID = (event) => {
-    event.
+    console.log(event.target.id)
 }
 // invoke get player function from game function 
 
@@ -139,7 +139,7 @@ const render = () => {
 
 const playGame = (event) => {
     // startCountdown()
-    getPlayersChoiceID(event) //and collections
+    getPlayerChoice(event) //and collections
     // displayCard()
     // collectPlayerChoices()
     // checkWinningCombo()
@@ -150,7 +150,7 @@ const playGame = (event) => {
 
 //----------------Event listeners----------------------------- 
 
-boardElement.addEventListener('click', playGame(event))
+boardElement.addEventListener('click', playGame)
 // Delegated: add event listener to the parent element containing all the squares 
 
 // add event listener to startGame the timer button 

@@ -1,4 +1,18 @@
-#board {
+body {
+    margin: 0;
+}
+
+.board {
+    
     display: flex;
-    border: 10px black;
+    flex-wrap: wrap;
+    width: 325px;
+    background-color: beige;
+
+    /* justify-self: center; */
+}
+.square {
+    width: 20%;
+    border: 2px solid black;
+    aspect-ratio: 1/1;
 }
