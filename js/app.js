@@ -8,7 +8,7 @@
 //div "instructions" 
 
 //h1 id="stateMessage" 
-
+//div id='board'
 //div*4 class="board" 
 
 //forEach div.board =div*4 id="square 0 -4" 
@@ -20,13 +20,14 @@
 
 //define a constant variable for winning combos 
 const winningCombos
+const iconsCollection
  
 
  
 
 //------------------State Variables-------------------------- 
 
- 
+  
 let userChoice
 let countdown
 let message
@@ -60,24 +61,19 @@ let mistakes
 
  
 
-//----------------Event listeners----------------------------- 
-
- 
-
-// Delegated: add event listener to the parent element containing all the squares 
-
-// add event listener to startGame the timer button 
-
-// add event listener to reset button 
-
- 
-
 //------------------Functions-------------------------------- 
 
  
 
 // invoke the init function:  
+const init = () => {
+    let userChoice = ''
+    let countdown = o
+    let message = ''
+    let win = false
+    let mistakes = 0
 
+}
 // set all variables to initial state:  
 
 // set countdown to 30 seconds; 
@@ -129,12 +125,34 @@ let mistakes
  
 
 // Render message to player. 
-
+const render = () => {
+    displayMessageEle.innerHtml = message
+} 
  
 
 // when countdown reaches zero: 
 
 // IF Board is incomplete set looser to true and set message variable to "you lost, try again"  
+
+const playGame = () => {
+    startCountdown()
+    getPlayersChoiceID() //and collections
+    displayCard()
+    collectPlayerChoices()
+    checkWinningCombo()
+    updateBoard()
+    render()
+    checkCountDown()
+} 
+
+//----------------Event listeners----------------------------- 
+
+
+// Delegated: add event listener to the parent element containing all the squares 
+
+// add event listener to startGame the timer button 
+
+// add event listener to reset button 
 
  
 
