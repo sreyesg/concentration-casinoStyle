@@ -58,7 +58,8 @@ let mistakes
  
 
 //Select the results displayed message 
-
+displayMessageEl = document.querySelector('#message')
+boardElement = document.querySelector('#board')
  
 
 //------------------Functions-------------------------------- 
@@ -68,7 +69,7 @@ let mistakes
 // invoke the init function:  
 const init = () => {
     let userChoice = ''
-    let countdown = o
+    let countdown = 0
     let message = ''
     let win = false
     let mistakes = 0
@@ -83,7 +84,9 @@ const init = () => {
  
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
-
+const getPlayerChoiceID = (event) => {
+    event.
+}
 // invoke get player function from game function 
 
  
@@ -134,20 +137,20 @@ const render = () => {
 
 // IF Board is incomplete set looser to true and set message variable to "you lost, try again"  
 
-const playGame = () => {
-    startCountdown()
-    getPlayersChoiceID() //and collections
-    displayCard()
-    collectPlayerChoices()
-    checkWinningCombo()
-    updateBoard()
-    render()
-    checkCountDown()
+const playGame = (event) => {
+    // startCountdown()
+    getPlayersChoiceID(event) //and collections
+    // displayCard()
+    // collectPlayerChoices()
+    // checkWinningCombo()
+    // updateBoard()
+    // render()
+    // checkCountDown()
 } 
 
 //----------------Event listeners----------------------------- 
 
-
+boardElement.addEventListener('click', playGame(event))
 // Delegated: add event listener to the parent element containing all the squares 
 
 // add event listener to startGame the timer button 
