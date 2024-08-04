@@ -1,27 +1,21 @@
  
-/* -----------------------HTML----------------------------*/ 
-
-//boiler plate 
-
-//body 
-
-//div "instructions" 
-
-//h1 id="stateMessage" 
-//div id='board'
-//div*4 class="board" 
-
-//forEach div.board =div*4 id="square 0 -4" 
-
- 
-
 //------------------------jS---------------------------------- 
 
 
 //define a constant variable for winning combos 
-const winningCombos
-const iconsCollection
- 
+const winningCombos = [
+    [3,15],
+    [0,8],
+    [5,12],
+    [6,13],
+    [0,16],
+    [1,14],
+    [10,11],
+    [2,7],
+    [4,9]
+]
+// const iconsCollection
+ const cardImages = ['imageOne','Imagetwo','ImageThree','imageFour','imageFive','imageix','imageSeven','ImageEigth','','','','','','','','']
 
  
 
@@ -34,24 +28,14 @@ let message
 let win
 let lose
 let mistakes
-
+let playerChoiceId
 //define variable for user's choice 
-
 //define variable for countdown 
-
 //define variable for message 
-
 //define variable for win 
-
 //define variable for lose 
-
 //define variable for mistakes 
 
- 
-
- 
-
- 
 
 //-----------------Cache elements-------------------------- 
 
@@ -59,7 +43,9 @@ let mistakes
 
 //Select the results displayed message 
 displayMessageEl = document.querySelector('#message')
-boardElement = document.querySelector('#board')
+boardEl = document.querySelector('.board')
+squareEls = document.querySelectorAll('.square')
+// console.log(squareEls[2])
  
 
 //------------------Functions-------------------------------- 
@@ -76,16 +62,18 @@ const init = () => {
 
 }
 // set all variables to initial state:  
-
 // set countdown to 30 seconds; 
-
 //set winner 
 
- 
-
 // using the event listeners setup, assign the player's choice to the player's choice variable 
-const getPlayerChoiceID = (event) => {
-    console.log(event.target.id)
+const getPlayerChoiceId = (event) => {
+    playerChoiceId = event.target.id
+}
+
+
+const displayCard = () => {
+    squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
+
 }
 // invoke get player function from game function 
 
@@ -139,8 +127,8 @@ const render = () => {
 
 const playGame = (event) => {
     // startCountdown()
-    getPlayerChoice(event) //and collections
-    // displayCard()
+    getPlayerChoiceId(event) //and collections
+    displayCard()
     // collectPlayerChoices()
     // checkWinningCombo()
     // updateBoard()
@@ -150,7 +138,7 @@ const playGame = (event) => {
 
 //----------------Event listeners----------------------------- 
 
-boardElement.addEventListener('click', playGame)
+boardEl.addEventListener('click', playGame)
 // Delegated: add event listener to the parent element containing all the squares 
 
 // add event listener to startGame the timer button 

@@ -15,4 +15,5 @@ body {
     width: 20%;
     border: 2px solid black;
     aspect-ratio: 1/1;
+    text-align: center;
 }
