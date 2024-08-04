@@ -1,4 +1,4 @@
- 
+ console.log('sanity check')
 //------------------------jS---------------------------------- 
 
 
@@ -8,7 +8,7 @@ const winningCombos = [
     [0,8],
     [5,12],
     [6,13],
-    [0,16],
+    [0,15],
     [1,14],
     [10,11],
     [2,7],
@@ -23,6 +23,7 @@ const winningCombos = [
 
   
 let userChoice
+let choicesCollection = []
 let countdown
 let message
 let win
@@ -67,17 +68,36 @@ const init = () => {
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
 const getPlayerChoiceId = (event) => {
-    playerChoiceId = event.target.id
+    playerChoiceId = Number(event.target.id)
+    
 }
-
 
 const displayCard = () => {
     squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
-
 }
-// invoke get player function from game function 
 
- 
+const collectPlayerChoices = () => {
+    choicesCollection.push(playerChoiceId)
+    // console.log('this is choices collection inside check winning', choicesCollection)
+}
+
+// invoke get player function from game function 
+const checkWinningCombo = () => {
+    console.log('this is choicesCollection inside check winning', choicesCollection)
+    if (choicesCollection.length < 2){
+        return
+    }else {
+        winningCombos.map((combo) => {
+            console.log(combo)
+            const checkIsInWinCombo = choice => combo.includes(choicesCollection)
+            if(choicesCollection.every(checkIsInWinCombo)){
+                console.log('that is a matching pair')
+            }else {
+                console.log('not a matching pair')
+            }
+        })
+    }
+} 
 
  
 
@@ -129,8 +149,8 @@ const playGame = (event) => {
     // startCountdown()
     getPlayerChoiceId(event) //and collections
     displayCard()
-    // collectPlayerChoices()
-    // checkWinningCombo()
+    collectPlayerChoices()
+    checkWinningCombo()
     // updateBoard()
     // render()
     // checkCountDown()
