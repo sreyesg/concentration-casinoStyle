@@ -4,18 +4,17 @@
 
 //define a constant variable for winning combos 
 const winningCombos = [
-    [3,15],
-    [0,8],
-    [5,12],
-    [6,13],
+    [3,14], 
+    [1,8], 
+    [5,12], 
+    [6,13], 
     [0,15],
-    [1,14],
     [10,11],
     [2,7],
     [4,9]
 ]
 // const iconsCollection
- const cardImages = ['imageOne','Imagetwo','ImageThree','imageFour','imageFive','imageix','imageSeven','ImageEigth','','','','','','','','']
+ const cardImages = ['E','B','G','A','H','C','D','G','B','H','F','F','C','D','A','E']
 
  
 
@@ -89,7 +88,7 @@ const checkWinningCombo = () => {
     }else {
         winningCombos.map((combo) => {
             console.log(combo)
-            const checkIsInWinCombo = choice => combo.includes(choicesCollection)
+            const checkIsInWinCombo = choice => combo.includes(choice)
             if(choicesCollection.every(checkIsInWinCombo)){
                 console.log('that is a matching pair')
             }else {
