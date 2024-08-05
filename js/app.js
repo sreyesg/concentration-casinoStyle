@@ -13,7 +13,11 @@ const winningCombos = [
     [2,7],
     [4,9]
 ]
+console.table(winningCombos)
 // const iconsCollection
+// update card images dynamically
+// make winnigCombos a biproduct of dynamicaally updating cardImages
+// explore .sort() method
  const cardImages = ['E','B','G','A','H','C','D','G','B','H','F','F','C','D','A','E']
 
  
@@ -23,7 +27,7 @@ const winningCombos = [
   
 let userChoice
 let playerChoichesArr = []
-let matchingPair
+let matchedPair = false
 let countdown
 let message
 let win
@@ -56,20 +60,38 @@ squareEls = document.querySelectorAll('.square')
 
 // invoke the init function:  
 const init = () => {
-    userChoice = ''
-    countdown = 0
-    message = ''
-    win = false
-    mistakes = 0
+    // userChoice = ''
+    // countdown = 0
+    // message = ''
+    // win = false
+    // mistakes = 0
+    getAllBoardPositions()
 
 }
+
+
+// add to init function
+const getAllBoardPositions = () => {
+    console.log('getAllBoardPositions completed')
+    allBoardPositions = []
+    winningCombos.map((combo) => {
+        combo.map(position => allBoardPositions.push(position))
+    })
+}
+
+// INITIATE GAME
+init()
 // set all variables to initial state:  
 // set countdown to 30 seconds; 
 //set winner 
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
+
+
+
 const getPlayerChoiceId = (event) => {
     playerChoiceId = Number(event.target.id)
+    
     
 }
 
@@ -79,6 +101,7 @@ const displayCard = () => {
 
 const collectPlayerChoices = () => {
     playerChoichesArr.push(playerChoiceId)
+    console.log('array of player choices ---->', playerChoichesArr)
     // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
 
@@ -89,25 +112,46 @@ const checkWinningCombo = () => {
         return
     }else {
         winningCombos.map((combo) => {
-            console.log(combo)
-            const checkIsInWinCombo = choice => combo.includes(choice)
+            // console.log(combo)
+            let checkIsInWinCombo = choice => combo.includes(choice)
             if(playerChoichesArr.every(checkIsInWinCombo)){
                 console.log('that is a matching pair')
-                matchingPair = true
-                console.log(matchingPair)
+                matchedPair = true
+                console.log(matchedPair)
             }
         })           
                 
     }
 }
 
-// add to init function
-const getAllBoardPositions = () => {
-    console.log('renderBoard working')
-    allBoardPositions = []
-    winningCombos.map((combo) => {
-        combo.map(position => allBoardPositions.push(position))
-    })
+const updateWinCombosArr = () => {
+    
+    // console.log('matchedPair Value FROM update wincombosarr()', matchedPair)
+    if (matchedPair === false){
+        return
+    
+    }else {
+        console.log('BEFORE POPPING>>>', winningCombos)
+        // playerChoichesArr.map(element => winningCombos.pop(element) )
+        // console.log('the value popped was  >>>',popped)
+        // console.log('arrWinningCombos ****', winningCombos)
+        console.log('arrPlayerChoices ****', playerChoichesArr)
+
+        let foundIdx = winningCombos.find((combo, idx) => {playerChoichesArr
+            let [value1, value2] = playerChoichesArr
+            console.log({value1, value2})
+            let [combo1, combo2] = combo 
+            console.log({combo1, combo2})
+            if (combo1 === value1 && combo2 === value2){
+                winningCombos.splice(idx,1)
+                // return idx
+            }
+        })
+
+        // console.log(foundIdx)
+        console.table(winningCombos)
+    }
+
 }
 
 const updateBoard = () => {
@@ -117,27 +161,14 @@ const updateBoard = () => {
 }
 
 
-const updateWinningCombos = () => {
-    // if playerChoichesArr is a matching pair, keep it in the board
-    console.log('matchingPair Value FROM Updateboard()', matchingPair)
-    if (matchingPair === false){
-        return
-    // ELSE delete it
-    }else {
-        winningCombos.pop(playerChoichesArr)
-    }
-
-}
 
 
 
  
-
 // invoke the primary render function 
-
 // render the game message to the DOM 
 
- 
+
 
 // after two player's clicks: 
 
@@ -183,7 +214,8 @@ const playGame = (event) => {
     displayCard()
     collectPlayerChoices()
     checkWinningCombo()
-    updateBoard()
+    updateWinCombosArr()
+    // updateBoard()
     // render()
     // checkCountDown()
 } 
