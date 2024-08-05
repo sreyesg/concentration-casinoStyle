@@ -3,7 +3,7 @@
 
 
 //define a constant variable for winning combos 
-const winningCombos = [
+let winningCombos = [
     [3,14], 
     [1,8], 
     [5,12], 
@@ -132,28 +132,33 @@ const updateWinCombosArr = () => {
     
     }else {
         console.log('BEFORE POPPING>>>', winningCombos)
-        // playerChoichesArr.map(element => winningCombos.pop(element) )
-        // console.log('the value popped was  >>>',popped)
-        // console.log('arrWinningCombos ****', winningCombos)
         console.log('arrPlayerChoices ****', playerChoichesArr)
 
-        let foundIdx = winningCombos.find((combo, idx) => {playerChoichesArr
+        winningCombos = winningCombos.filter((combo, idx) => {
             let [value1, value2] = playerChoichesArr
+            console.log(combo)
             console.log({value1, value2})
-            let [combo1, combo2] = combo 
+            let [combo1, combo2] = combo
             console.log({combo1, combo2})
             if (combo1 === value1 && combo2 === value2){
-                winningCombos.splice(idx,1)
-                // return idx
+                console.log(combo,idx)
+                // winningCombos.splice(idx,1)
+                return false
             }
+            return true
         })
+        
 
-        // console.log(foundIdx)
+        // console.table(foundIdx)
         console.table(winningCombos)
     }
-
+    
 }
 
+// update player choicerArr to empty string
+
+// const updatePlayerChoicesArr ()
+// playerChoichesArr = []
 const updateBoard = () => {
     allBoardPositions.map((position) => {
         squareEls[position].innerHTML = ''
@@ -215,6 +220,7 @@ const playGame = (event) => {
     collectPlayerChoices()
     checkWinningCombo()
     updateWinCombosArr()
+    // updatePlayerChoicesArr()
     // updateBoard()
     // render()
     // checkCountDown()
