@@ -22,13 +22,15 @@ const winningCombos = [
 
   
 let userChoice
-let choicesCollection = []
+let playerChoichesArr = []
+let matchingPair
 let countdown
 let message
 let win
 let lose
 let mistakes
 let playerChoiceId
+let allBoardPositions = []
 //define variable for user's choice 
 //define variable for countdown 
 //define variable for message 
@@ -54,11 +56,11 @@ squareEls = document.querySelectorAll('.square')
 
 // invoke the init function:  
 const init = () => {
-    let userChoice = ''
-    let countdown = 0
-    let message = ''
-    let win = false
-    let mistakes = 0
+    userChoice = ''
+    countdown = 0
+    message = ''
+    win = false
+    mistakes = 0
 
 }
 // set all variables to initial state:  
@@ -76,27 +78,58 @@ const displayCard = () => {
 }
 
 const collectPlayerChoices = () => {
-    choicesCollection.push(playerChoiceId)
-    // console.log('this is choices collection inside check winning', choicesCollection)
+    playerChoichesArr.push(playerChoiceId)
+    // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
 
 // invoke get player function from game function 
 const checkWinningCombo = () => {
-    console.log('this is choicesCollection inside check winning', choicesCollection)
-    if (choicesCollection.length < 2){
+    console.log('this is playerChoichesArr inside check winning', playerChoichesArr)
+    if (playerChoichesArr.length < 2){
         return
     }else {
         winningCombos.map((combo) => {
             console.log(combo)
             const checkIsInWinCombo = choice => combo.includes(choice)
-            if(choicesCollection.every(checkIsInWinCombo)){
+            if(playerChoichesArr.every(checkIsInWinCombo)){
                 console.log('that is a matching pair')
-            }else {
-                console.log('not a matching pair')
+                matchingPair = true
+                console.log(matchingPair)
             }
-        })
+        })           
+                
     }
-} 
+}
+
+// add to init function
+const getAllBoardPositions = () => {
+    console.log('renderBoard working')
+    allBoardPositions = []
+    winningCombos.map((combo) => {
+        combo.map(position => allBoardPositions.push(position))
+    })
+}
+
+const updateBoard = () => {
+    allBoardPositions.map((position) => {
+        squareEls[position].innerHTML = ''
+    })
+}
+
+
+const updateWinningCombos = () => {
+    // if playerChoichesArr is a matching pair, keep it in the board
+    console.log('matchingPair Value FROM Updateboard()', matchingPair)
+    if (matchingPair === false){
+        return
+    // ELSE delete it
+    }else {
+        winningCombos.pop(playerChoichesArr)
+    }
+
+}
+
+
 
  
 
@@ -150,7 +183,7 @@ const playGame = (event) => {
     displayCard()
     collectPlayerChoices()
     checkWinningCombo()
-    // updateBoard()
+    updateBoard()
     // render()
     // checkCountDown()
 } 
