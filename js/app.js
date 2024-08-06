@@ -13,7 +13,7 @@ let winningCombos = [
     [2,7],
     [4,9]
 ]
-console.table(winningCombos)
+// console.table(winningCombos)
 // const iconsCollection
 // update card images dynamically
 // make winnigCombos a biproduct of dynamicaally updating cardImages
@@ -150,7 +150,7 @@ const updateWinCombosArr = () => {
         
 
         // console.table(foundIdx)
-        console.table(winningCombos)
+        // console.table(winningCombos)
     }
     
 }
@@ -158,7 +158,14 @@ const updateWinCombosArr = () => {
 // update player choicerArr to empty string
 
 const updatePlayerChoicesArr = () => {
-    playerChoichesArr = []
+    if (playerChoichesArr.length < 2) {
+        return
+    }else {
+        console.log('playerChoichesArr is greater 2', playerChoichesArr)
+        playerChoichesArr = [] 
+        console.log('empty PlayerChoicesArr >>>>', playerChoichesArr)
+
+    }
 }
 
 // update board
