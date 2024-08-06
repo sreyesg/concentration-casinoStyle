@@ -151,7 +151,7 @@ const updateWinCombosArr = () => {
             // return true
         })
         // console.table(foundIdx)
-    // console.table(winningCombos)
+    console.table(winningCombos)
     }
     
 }
