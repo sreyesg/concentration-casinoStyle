@@ -130,6 +130,9 @@ const updateWinCombosArr = () => {
     if (matchedPair === false){
         return
     
+    }else if(playerChoichesArr.length < 2){
+        return
+    
     }else {
         console.log('BEFORE POPPING>>>', winningCombos)
         console.log('arrPlayerChoices ****', playerChoichesArr)
@@ -147,32 +150,33 @@ const updateWinCombosArr = () => {
             }
             // return true
         })
-        
-
         // console.table(foundIdx)
-        // console.table(winningCombos)
+    // console.table(winningCombos)
     }
     
 }
 
 // update player choicerArr to empty string
-
-const updatePlayerChoicesArr = () => {
+const resetPlayerChoicesArr = () => {
     if (playerChoichesArr.length < 2) {
         return
     }else {
         console.log('playerChoichesArr is greater 2', playerChoichesArr)
         playerChoichesArr = [] 
-        console.log('empty PlayerChoicesArr >>>>', playerChoichesArr)
+        console.log('empty PlayerChoicesArr >>>>', playerChoichesArr.length)
 
     }
 }
 
 // update board
 const updateBoard = () => {
-    allBoardPositions.map((position) => {
-        squareEls[position].innerHTML = ''
-    })
+    if (playerChoichesArr < 2){
+        return
+    }else {
+        allBoardPositions.map((position) => {
+            squareEls[position].innerHTML = ''
+        })
+    }
 }
 
 // invoke the primary render function 
@@ -225,7 +229,7 @@ const playGame = (event) => {
     collectPlayerChoices()
     checkWinningCombo()
     updateWinCombosArr()
-    updatePlayerChoicesArr()
+    resetPlayerChoicesArr()
     // updateBoard()
     // render()
     // checkCountDown()
