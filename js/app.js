@@ -158,16 +158,18 @@ const updateWinCombosArr = () => {
 
 // update board
 const updateBoard = () => {
-    if (playerChoichesArr < 2){
+    if (playerChoichesArr.length < 2){
         return
     }else {
-        console.log("all board position from updateBoard >>>", allBoardPositions)
-        allBoardPositions.map((position) => {
-            squareEls[position].innerHTML = ''
+        console.log("all board position from updateBoard >>>", winningCombos)
+        winningCombos.map((combo) => {
+            combo.map((position) => {
+                console.log('winAtThisPosition', position)
+                squareEls[position].innerHTML = 'x'
+            })           
         })
     }
 }
-
 
 // update player choicerArr to empty string
 const resetPlayerChoicesArr = () => {
