@@ -156,6 +156,19 @@ const updateWinCombosArr = () => {
     
 }
 
+// update board
+const updateBoard = () => {
+    if (playerChoichesArr < 2){
+        return
+    }else {
+        console.log("all board position from updateBoard >>>", allBoardPositions)
+        allBoardPositions.map((position) => {
+            squareEls[position].innerHTML = ''
+        })
+    }
+}
+
+
 // update player choicerArr to empty string
 const resetPlayerChoicesArr = () => {
     if (playerChoichesArr.length < 2) {
@@ -168,16 +181,6 @@ const resetPlayerChoicesArr = () => {
     }
 }
 
-// update board
-const updateBoard = () => {
-    if (playerChoichesArr < 2){
-        return
-    }else {
-        allBoardPositions.map((position) => {
-            squareEls[position].innerHTML = ''
-        })
-    }
-}
 
 // invoke the primary render function 
 // render the game message to the DOM 
@@ -229,8 +232,8 @@ const playGame = (event) => {
     collectPlayerChoices()
     checkWinningCombo()
     updateWinCombosArr()
+    updateBoard()
     resetPlayerChoicesArr()
-    // updateBoard()
     // render()
     // checkCountDown()
 } 
