@@ -136,16 +136,16 @@ const updateWinCombosArr = () => {
 
         winningCombos = winningCombos.filter((combo, idx) => {
             let [value1, value2] = playerChoichesArr
-            console.log(combo)
-            console.log({value1, value2})
+            console.log('this is the combo to analize', combo)
+            console.log('destructuring choice', {value1, value2})
             let [combo1, combo2] = combo
-            console.log({combo1, combo2})
-            if (combo1 === value1 && combo2 === value2){
-                console.log(combo,idx)
+            console.log('distructuring combo', {combo1, combo2})
+            if (combo1 !== value1 && combo2 !== value2){
+                // console.log(combo,idx)
                 // winningCombos.splice(idx,1)
-                return false
+                return true
             }
-            return true
+            // return true
         })
         
 
@@ -157,19 +157,17 @@ const updateWinCombosArr = () => {
 
 // update player choicerArr to empty string
 
-// const updatePlayerChoicesArr ()
-// playerChoichesArr = []
+const updatePlayerChoicesArr = () => {
+    playerChoichesArr = []
+}
+
+// update board
 const updateBoard = () => {
     allBoardPositions.map((position) => {
         squareEls[position].innerHTML = ''
     })
 }
 
-
-
-
-
- 
 // invoke the primary render function 
 // render the game message to the DOM 
 
@@ -220,7 +218,7 @@ const playGame = (event) => {
     collectPlayerChoices()
     checkWinningCombo()
     updateWinCombosArr()
-    // updatePlayerChoicesArr()
+    updatePlayerChoicesArr()
     // updateBoard()
     // render()
     // checkCountDown()
