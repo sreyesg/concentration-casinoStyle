@@ -82,14 +82,13 @@ const getAllBoardPositions = () => {
 }
 
 // INITIATE GAME
-init()
 // set all variables to initial state:  
 // set countdown to 30 seconds; 
-//set winner 
+//set winner to false
+init()
+ 
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
-
-
 
 const getPlayerChoiceId = (event) => {
     playerChoiceId = Number(event.target.id)
@@ -100,13 +99,23 @@ const displayCard = () => {
     squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
 }
 
+
+
+// invoke get player function from game function 
+
+
+// after two player's clicks: 
+// compare the first and second choices with the winning combos 
+// IF the set matches any winning combo 
+    //THEN keep the choices visible 
+    //ELSE hide choices and add 1 to the mistakes variable and render a message  
+
 const collectPlayerChoices = () => {
     playerChoichesArr.push(playerChoiceId)
     console.log('array of player choices ---->', playerChoichesArr)
     // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
 
-// invoke get player function from game function 
 const checkWinningCombo = () => {
     console.log('this is playerChoichesArr inside check winning', playerChoichesArr)
     if (playerChoichesArr.length < 2){
@@ -172,6 +181,7 @@ const updateBoard = () => {
     }
 }
 
+
 // update player choicerArr to empty string
 const resetPlayerChoicesArr = () => {
     if (playerChoichesArr.length < 2) {
@@ -186,19 +196,15 @@ const resetPlayerChoicesArr = () => {
 
 
 // invoke the primary render function 
+
+
 // render the game message to the DOM 
+const updateMessage = () => {
+    if (matchedPair === true){
+        displayMessageEl.innerHTML = 'Pair Unlocked!'
+    }
+}
 
-
-
-// after two player's clicks: 
-
-// compare the first and second choices with the winning combos 
-
-// IF the set matches any winning combo 
-
-//THEN keep the choices visible 
-
-//ELSE hide choices and add 1 to the mistakes variable and render a message  
 
  
 
@@ -253,6 +259,7 @@ const playGame = (event) => {
     updateWinCombosArr()
     updateBoard()
     resetPlayerChoicesArr()
+    updateMessage()
     // render()
     // checkCountDown()
 } 
