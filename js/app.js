@@ -114,9 +114,9 @@ const collectPlayerChoices = () => {
     console.log('array of player choices ---->', playerChoichesArr)
     // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
-
+// Check for Matched Pair when PlayerChoicesArr.lenght < 2 
 const checkForMatchedPair = (event) => {
-    console.log('this is playerChoichesArr inside check winning', playerChoichesArr)
+    console.log(playerChoichesArr)
     if (playerChoichesArr.length < 2){
         return
     }else {
@@ -126,12 +126,14 @@ const checkForMatchedPair = (event) => {
             if(playerChoichesArr.every(checkIsInWinCombo)){
                 console.log('that is a matching pair')
                 matchedPair = true
-                console.log(matchedPair)
+                // console.log(matchedPair)
             }else {
-                console.log('FROM WINNING COMBO', {playerChoichesArr,
-                    firstGuess: squareEls[playerChoichesArr[0]].textContent,
-                    secondGuess: squareEls[playerChoichesArr[1]].textContent,
-                })
+                // const playerChoicesObj = {playerChoichesArr,
+                //     firstGuess: squareEls[playerChoichesArr[0]].textContent,
+                //     secondGuess: squareEls[playerChoichesArr[1]].textContent,
+                    
+                // }
+                displayMessageEl.innerHTML = 'Wrong Guess!!'
             }
         })           
                 
@@ -141,7 +143,7 @@ const checkForMatchedPair = (event) => {
 // Delete the matched pair position from the Winning Combos array
 const updateWinCombosArr = () => {
     
-    // console.log('matchedPair Value FROM update wincombosarr()', matchedPair)
+    console.log('matchedPair Value FROM update wincombosarr()', matchedPair)
     if (matchedPair === false){
         return
     
@@ -149,15 +151,16 @@ const updateWinCombosArr = () => {
         return
     
     }else {
-        console.log('BEFORE POPPING>>>', winningCombos)
+        console.log('BEFORE POPPING>>>')
+        console.table(winningCombos)
         console.log('arrPlayerChoices ****', playerChoichesArr)
 
         winningCombos = winningCombos.filter((combo, idx) => {
             let [value1, value2] = playerChoichesArr
-            console.log('this is the combo to analize', combo)
-            console.log('destructuring choice', {value1, value2})
+            // console.log('this is the combo to analize', combo)
+            // console.log('destructuring choice', {value1, value2})
             let [combo1, combo2] = combo
-            console.log('distructuring combo', {combo1, combo2})
+            // console.log('distructuring combo', {combo1, combo2})
             if (combo1 !== value1 && combo2 !== value2){
                 // console.log(combo,idx)
                 // winningCombos.splice(idx,1)
@@ -171,15 +174,15 @@ const updateWinCombosArr = () => {
     
 }
 
-// update board with the new winningCombos array
+// Render board using winningCombos array
 const updateBoard = () => {
     if (playerChoichesArr.length < 2){
         return
     }else {
-        console.log("all board position from updateBoard >>>", winningCombos)
+        
         winningCombos.map((combo) => {
             combo.map((position) => {
-                console.log('winAtThisPosition', position)
+                // console.log('winAtThisPosition', position)
                 squareEls[position].innerHTML = '-'
             })           
         })
@@ -187,13 +190,14 @@ const updateBoard = () => {
 }
 
 
-// update player choicerArr to empty string
+// Update player choicerArr to empty string and Matchedpair Variable to false
 const resetPlayerChoicesArr = () => {
     if (playerChoichesArr.length < 2) {
         return
     }else {
         console.log('playerChoichesArr is greater 2', playerChoichesArr)
         playerChoichesArr = [] 
+        matchedPair = false
         console.log('empty PlayerChoicesArr >>>>', playerChoichesArr.length)
 
     }
@@ -214,21 +218,17 @@ const updateMessage = () => {
  
 
 // check mistakes 
-
 // IF mistakes variable is less than 2 return/continue game 
-
 //ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
 
  
 
-// check board 
+// Check board 
+    // IF board is completed 
+    //THEN set win to true 
 
-// IF board is completed 
-
-//THEN set win to true 
-
- //Code a countdown timer
-//  add this function to the INIT function with the intended seconds
+// Code a countdown timer
+// add this function to the INIT function with the intended seconds
 // the time left variable is a number that is in the gobal scope 
 // if Matched add to the timeLeft Global variable x seconds
  const countdownTimer = (seconds) => {
