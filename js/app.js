@@ -53,6 +53,7 @@ let intervalId
 displayMessageEl = document.querySelector('#message')
 boardEl = document.querySelector('.board')
 squareEls = document.querySelectorAll('.square')
+countdownEl = document.querySelector('#countdown')
 // console.log(squareEls[2])
  
 
@@ -100,9 +101,6 @@ const displayCard = () => {
     squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
 }
 
-
-
-
 // after two player's clicks: 
 // compare the first and second choices with the winning combos 
 // IF the set matches any winning combo 
@@ -143,7 +141,6 @@ const checkForMatchedPair = (event) => {
 // Delete the matched pair position from the Winning Combos array
 const updateWinCombosArr = () => {
     
-    console.log('matchedPair Value FROM update wincombosarr()', matchedPair)
     if (matchedPair === false){
         return
     
@@ -259,6 +256,7 @@ function  countdown  () {
     }else { 
         console.log(timeLeft)
         timeLeft--
+        countdownEl.innerHTML = timeLeft
         console.log("seconds left =", timeLeft)    
     } 
 }

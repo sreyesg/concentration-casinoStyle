@@ -17,3 +17,15 @@ body {
     aspect-ratio: 1/1;
     text-align: center;
 }
+
+#main {
+    display: flex;
+    /* height: 800; */
+    background-color: antiquewhite;
+
+}
+
+#countdown {
+    background: black;
+    color: white;
+}
