@@ -2,7 +2,7 @@
 //------------------------jS---------------------------------- 
 
 
-//define a constant variable for winning combos 
+//define a constant variable for winningcombos 
 let winningCombos = [
     [3,14], 
     [1,8], 
@@ -89,19 +89,18 @@ init()
  
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
-
+// Get the event's ID
 const getPlayerChoiceId = (event) => {
     playerChoiceId = Number(event.target.id)
     
 }
 
+// Using the event ID display the Card
 const displayCard = () => {
     squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
 }
 
 
-
-// invoke get player function from game function 
 
 
 // after two player's clicks: 
@@ -116,7 +115,7 @@ const collectPlayerChoices = () => {
     // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
 
-const checkWinningCombo = () => {
+const checkForMatchedPair = (event) => {
     console.log('this is playerChoichesArr inside check winning', playerChoichesArr)
     if (playerChoichesArr.length < 2){
         return
@@ -128,12 +127,18 @@ const checkWinningCombo = () => {
                 console.log('that is a matching pair')
                 matchedPair = true
                 console.log(matchedPair)
+            }else {
+                console.log('FROM WINNING COMBO', {playerChoichesArr,
+                    firstGuess: squareEls[playerChoichesArr[0]].textContent,
+                    secondGuess: squareEls[playerChoichesArr[1]].textContent,
+                })
             }
         })           
                 
     }
 }
 
+// Delete the matched pair position from the Winning Combos array
 const updateWinCombosArr = () => {
     
     // console.log('matchedPair Value FROM update wincombosarr()', matchedPair)
@@ -166,7 +171,7 @@ const updateWinCombosArr = () => {
     
 }
 
-// update board
+// update board with the new winningCombos array
 const updateBoard = () => {
     if (playerChoichesArr.length < 2){
         return
@@ -175,7 +180,7 @@ const updateBoard = () => {
         winningCombos.map((combo) => {
             combo.map((position) => {
                 console.log('winAtThisPosition', position)
-                squareEls[position].innerHTML = 'x'
+                squareEls[position].innerHTML = '-'
             })           
         })
     }
@@ -223,23 +228,26 @@ const updateMessage = () => {
 //THEN set win to true 
 
  //Code a countdown timer
-
- 
-
-
+//  add this function to the INIT function with the intended seconds
+// the time left variable is a number that is in the gobal scope 
+// if Matched add to the timeLeft Global variable x seconds
  const countdownTimer = (seconds) => {
+    // setting up the countdown second
     timeLeft = seconds
-    intervalId = setInterval(countdown, 1000)
-    function  countdown  () {
-        if(timeLeft === 0){
-            clearInterval(intervalId)
-        }else { 
-            timeLeft--
-            console.log("seconds left =", timeLeft)    
-        }
+    intervalId = setInterval(countdown, 1000)    
+    return 'the countdown starting up'
+}
+
+function  countdown  () {
+    if(timeLeft === 0){
+        clearInterval(intervalId)
+    }else { 
+        console.log(timeLeft)
+        timeLeft--
+        console.log("seconds left =", timeLeft)    
     } 
 }
- 
+// console.log(countdownTimer(10))
 // Render message to player. 
 const render = () => {
     displayMessageEle.innerHtml = message
@@ -255,7 +263,7 @@ const playGame = (event) => {
     getPlayerChoiceId(event) //and collections
     displayCard()
     collectPlayerChoices()
-    checkWinningCombo()
+    checkForMatchedPair(event)
     updateWinCombosArr()
     updateBoard()
     resetPlayerChoicesArr()

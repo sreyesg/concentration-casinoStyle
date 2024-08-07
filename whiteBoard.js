@@ -19,21 +19,21 @@ searchFor = [3,14]
 
 // code a clock with setInterval
 
-// let timeLeft = 5
-// let intervalId
-// const startit = () => {
-//     intervalId = setInterval(countdown, 1000)
-//     function  countdown () {
-//         if(timeLeft === 0){
-//             clearInterval(intervalId)
-//         }else { 
-//             timeLeft--
-//             console.log(timeLeft) 
-//             console.log(intervalId)   
-//         }
-//     }
+let timeLeft = 5
+let intervalId
+const startit = () => {
+    intervalId = setInterval(countdown, 1000)
+    function  countdown () {
+        if(timeLeft === 0){
+            clearInterval(intervalId)
+        }else { 
+            timeLeft--
+            console.log(timeLeft) 
+            console.log(intervalId)   
+        }
+    }
 
-// }
+}
 
 startit()
 // if(arr1.includes(arr2[0]) && arr1.includes(arr2[1])){
