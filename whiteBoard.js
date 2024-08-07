@@ -12,11 +12,30 @@ const Combos = [
     [5,12], 
 ]
 searchFor = [3,14]
-console.log(Combos)
-console.log(Combos.pop(searchFor))
-console.log(Combos)
+// console.log(Combos)
+// console.log(Combos.pop(searchFor))
+// console.log(Combos)
 
 
+// code a clock with setInterval
+
+// let timeLeft = 5
+// let intervalId
+// const startit = () => {
+//     intervalId = setInterval(countdown, 1000)
+//     function  countdown () {
+//         if(timeLeft === 0){
+//             clearInterval(intervalId)
+//         }else { 
+//             timeLeft--
+//             console.log(timeLeft) 
+//             console.log(intervalId)   
+//         }
+//     }
+
+// }
+
+startit()
 // if(arr1.includes(arr2[0]) && arr1.includes(arr2[1])){
 //     console.log("we found an iquality")
 // }

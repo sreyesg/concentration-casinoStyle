@@ -28,13 +28,15 @@ let winningCombos = [
 let userChoice
 let playerChoichesArr = []
 let matchedPair = false
-let countdown
 let message
 let win
 let lose
 let mistakes
 let playerChoiceId
 let allBoardPositions = []
+let timeLeft 
+let intervalId 
+ 
 //define variable for user's choice 
 //define variable for countdown 
 //define variable for message 
@@ -91,7 +93,6 @@ init()
 
 const getPlayerChoiceId = (event) => {
     playerChoiceId = Number(event.target.id)
-    
     
 }
 
@@ -215,8 +216,24 @@ const resetPlayerChoicesArr = () => {
 
 //THEN set win to true 
 
+ //Code a countdown timer
+
  
 
+
+ const countdownTimer = (seconds) => {
+    timeLeft = seconds
+    intervalId = setInterval(countdown, 1000)
+    function  countdown  () {
+        if(timeLeft === 0){
+            clearInterval(intervalId)
+        }else { 
+            timeLeft--
+            console.log("seconds left =", timeLeft)    
+        }
+    } 
+}
+ 
 // Render message to player. 
 const render = () => {
     displayMessageEle.innerHtml = message
