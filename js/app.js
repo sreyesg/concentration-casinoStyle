@@ -162,8 +162,6 @@ const updateWinCombosArr = () => {
             let [combo1, combo2] = combo
             // console.log('distructuring combo', {combo1, combo2})
             if (combo1 !== value1 && combo2 !== value2){
-                // console.log(combo,idx)
-                // winningCombos.splice(idx,1)
                 return true
             }
             // return true
@@ -190,6 +188,34 @@ const updateBoard = () => {
 }
 
 
+// CHECK FIRST WINNING CONDITION
+// Check board 
+    // IF board is completed 
+    //THEN set win to true 
+
+const isBoardCompleted = () => {
+    console.log(winningCombos.length)
+    if (winningCombos.length === 0){
+        win = true
+        console.log(win)
+    }
+}
+
+// render the game message to the DOM 
+const updateMessage = () => {
+    console.log(matchedPair)
+    if (matchedPair === true){
+        displayMessageEl.innerHTML = 'Pair Unlocked!'
+    }
+}
+ 
+const finalMessage = () => {
+    if (win === true){
+        displayMessageEl.innerHTML = 'Congratulations you WON!'
+    }
+}
+
+
 // Update player choicerArr to empty string and Matchedpair Variable to false
 const resetPlayerChoicesArr = () => {
     if (playerChoichesArr.length < 2) {
@@ -207,13 +233,6 @@ const resetPlayerChoicesArr = () => {
 // invoke the primary render function 
 
 
-// render the game message to the DOM 
-const updateMessage = () => {
-    if (matchedPair === true){
-        displayMessageEl.innerHTML = 'Pair Unlocked!'
-    }
-}
-
 
  
 
@@ -222,10 +241,6 @@ const updateMessage = () => {
 //ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
 
  
-
-// Check board 
-    // IF board is completed 
-    //THEN set win to true 
 
 // Code a countdown timer
 // add this function to the INIT function with the intended seconds
@@ -250,7 +265,7 @@ function  countdown  () {
 // console.log(countdownTimer(10))
 // Render message to player. 
 const render = () => {
-    displayMessageEle.innerHtml = message
+    // displayMessageEle.innerHtml = message
 } 
  
 
@@ -266,8 +281,10 @@ const playGame = (event) => {
     checkForMatchedPair(event)
     updateWinCombosArr()
     updateBoard()
-    resetPlayerChoicesArr()
+    isBoardCompleted()
     updateMessage()
+    resetPlayerChoicesArr()
+    finalMessage()
     // render()
     // checkCountDown()
 } 
