@@ -2,7 +2,8 @@ body {
     font-family: 'Segoe UI'
 }
 #section {
-    background-image: url(./images/background.jpg);
+    background-color: bisque;
+    /* background-image: url(./background.jpg); */
     background-size: cover;
     /* background-position: center; */
     /* background-repeat: no-repeat; */
@@ -38,7 +39,7 @@ h1 {
 .square {
     background-color: white;
     width: 24.6%;
-
+    font-size: 50px;
     border: 1px solid black;
 }
 #leftSubSection {

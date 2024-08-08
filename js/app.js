@@ -18,7 +18,7 @@ let winningCombos = [
 // update card images dynamically
 // make winnigCombos a biproduct of dynamicaally updating cardImages
 // explore .sort() method
- const cardImages = ['E','B','G','A','H','C','D','G','B','H','F','F','C','D','A','E']
+ const cardImages = ['♠️','B','G','A','H','C','D','G','B','H','F','F','C','D','A','♠️']
 
  
 
@@ -51,7 +51,7 @@ let intervalId
 
 //Select the results displayed message 
 displayMessageEl = document.querySelector('#message')
-boardEl = document.querySelector('.board')
+boardEl = document.querySelector('#board')
 squareEls = document.querySelectorAll('.square')
 countdownEl = document.querySelector('#countdown')
 // console.log(squareEls[2])
