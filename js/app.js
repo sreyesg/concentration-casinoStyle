@@ -18,7 +18,7 @@ let winningCombos = [
 // update card images dynamically
 // make winnigCombos a biproduct of dynamicaally updating cardImages
 // explore .sort() method
- const cardImages = ['🎲','🎰','🂷','🍀','💸','💰','🃏','🂷','🎰','💸','🤑','🤑','💰','🃏','🍀','🎲']
+ const cardImages = ['🎲','🎰','🂷','🍀','♣️','💰','🃏','🂷','🎰','♣️','🃑','🃑','💰','🃏','🍀','🎲']
 
  
 
