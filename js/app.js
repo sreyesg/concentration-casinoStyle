@@ -70,19 +70,11 @@ const init = () => {
     mistakesCounter = 0
     boardEl.classList.remove('disabled')
 
-    // countdownTimer(30)
+    countdownTimer(30)
 
 }
 
 
-// add to init function
-// const getAllBoardPositions = () => {
-//     console.log('getAllBoardPositions completed')
-//     allBoardPositions = []
-//     winningCombos.map((combo) => {
-//         combo.map(position => allBoardPositions.push(position))
-//     })
-// }
 
 // INITIATE GAME
 // set all variables to initial state:  
@@ -226,6 +218,7 @@ const isBoardCompleted = () => {
     // console.log(winningCombos.length)
     if (winningCombos.length === 0){
         win = true
+        clearInterval(intervalId)
         console.log(win)
     }
 }
@@ -240,6 +233,7 @@ const updateMistakesCounter = () => {
         
     } 
     console.log("UPDATE MISTAKESCOUNTER", mistakesCounter)
+    mistakesEl.innerHTML = `${mistakesCounter} mistake(s)`
 }
 
 // render the game message to the DOM 
@@ -285,7 +279,7 @@ const resetPlayerChoicesArr = () => {
 //ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
 const checkForloose = () => {
     
-    if (mistakesCounter === 3){
+    if (mistakesCounter === 4){
         boardEl.classList.toggle('disabled')
         displayMessageEl.innerHTML = 'Good try! Better luck next time.'
     }
