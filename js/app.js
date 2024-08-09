@@ -26,18 +26,18 @@ let winningCombos = [
 
   
 // let userChoice
-let playerChoichesArr = []
-let matchedPair = false
+let playerChoichesArr 
+let matchedPair 
 let message
 let win
 let lose
-let mistakesCounter = 0
+let mistakesCounter 
 let playerChoiceId
-let allBoardPositions = []
+let allBoardPositions  
 let timeLeft 
 let intervalId 
 // let notIncludedInCombo = 0
-let previousWinCombos = 8
+let previousWinCombos 
 //define variable for user's choice 
 //define variable for countdown 
 //define variable for message 
@@ -63,11 +63,17 @@ const mistakesEl = document.querySelector('#mistakes')
 
 // invoke the init function:  
 const init = () => {
-    // userChoice = ''
-    // countdown = 0
-    // message = ''
-    // win = false
-    mistakesCounter = 0
+    let playerChoichesArr = []
+    let matchedPair = false
+    let message
+    let win = false
+    // let lose
+    let mistakesCounter = 0
+    let playerChoiceId
+    let allBoardPositions = []
+    let timeLeft 
+    let intervalId 
+    let previousWinCombos = 8
     boardEl.classList.remove('disabled')
 
     countdownTimer(30)
@@ -268,15 +274,9 @@ const resetPlayerChoicesArr = () => {
 }
 
 
-// invoke the primary render function 
-
-
-
- 
-
 // check mistakes 
-// IF mistakes variable is less than 2 return/continue game 
-//ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
+    // IF mistakes variable is less than 2 return/continue game 
+    //ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
 const checkForloose = () => {
     
     if (mistakesCounter === 4){
@@ -289,15 +289,12 @@ const checkForloose = () => {
 
 // console.log(countdownTimer(10))
 // Render message to player. 
-const render = () => {
-    // when countdown reaches zero: 
-} 
-
-// IF Board is incomplete set looser to true and set message variable to "you lost, try again"  
+// const render = () => {
+//     // when countdown reaches zero: 
+// } 
 
 const playGame = (event) => {
-    // startCountdown()
-    getPlayerChoiceId(event) //and collections
+    getPlayerChoiceId(event) 
     displayCard()
     collectPlayerChoices()
     checkForMatchedPair(event)
@@ -315,11 +312,11 @@ const playGame = (event) => {
 
 //----------------Event listeners----------------------------- 
 
-boardEl.addEventListener('click', playGame)
-StartGameEl.addEventListener('click', init)
 // Delegated: add event listener to the parent element containing all the squares 
+boardEl.addEventListener('click', playGame)
 
 // add event listener to startGame the timer button 
+StartGameEl.addEventListener('click', init)
 
 // add event listener to reset button 
 
