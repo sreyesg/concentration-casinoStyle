@@ -51,6 +51,17 @@ const mistakesEl = document.querySelector('#mistakes')
 
 //------------------Functions-------------------------------- 
 
+winningCombos = [
+    [3,14], 
+    [1,8], 
+    [5,12], 
+    [6,13], 
+    [0,15],
+    [10,11],
+    [2,7],
+    [4,9]
+]
+
 
 // invoke the init function:  
 const init = () => {
@@ -76,6 +87,17 @@ const init = () => {
     ]
     resetBoard()
 }
+
+// onLoad 
+winningCombos.map((combo, idx1) => {
+    // console.log(combo, idx1)
+    // console.log(idx1)
+    combo.map((position, idx) => {
+        console.log(position)
+        squareEls[position].innerHTML = cardImages[position]
+    })
+})
+
 
 const resetBoard = () => {
         
