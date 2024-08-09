@@ -56,6 +56,7 @@ const boardEl = document.querySelector('#board')
 const squareEls = document.querySelectorAll('.square')
 const countdownEl = document.querySelector('#countdown')
 const StartGameEl = document.querySelector('#btnStartGame') 
+const mistakesEl = document.querySelector('#mistakes')
 
 //------------------Functions-------------------------------- 
 
