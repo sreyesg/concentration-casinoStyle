@@ -32,7 +32,7 @@ h1 {
     text-align: center;
     background-color: rgba(0,0,0,0.5);
     border-radius: 10px;
-    
+
 }
 #board {
     border: 1px solid white;
@@ -70,18 +70,23 @@ h1 {
 }
 
 #countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     color: black;
     border-radius: 10px;
-    width: 35%;
+    width: 45%;
     height: 50px;
-    font-size: 20px;
-    text-align: center;
-    
+    font-size: 30px;    
 }
 #message {
     font-size: 45px;
     font-weight: bold;
     color: white;
     background-color: rgba(0,0,0,0.5);
+}
+
+.disabled {
+    pointer-events: none;
 }

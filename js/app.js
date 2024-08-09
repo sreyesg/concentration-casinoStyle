@@ -31,12 +31,12 @@ let matchedPair = false
 let message
 let win
 let lose
-let mistakes
+let mistakesCounter
 let playerChoiceId
 let allBoardPositions = []
 let timeLeft 
 let intervalId 
- 
+
 //define variable for user's choice 
 //define variable for countdown 
 //define variable for message 
@@ -50,16 +50,20 @@ let intervalId
  
 
 //Select the results displayed message 
-displayMessageEl = document.querySelector('#message')
-boardEl = document.querySelector('#board')
-squareEls = document.querySelectorAll('.square')
-countdownEl = document.querySelector('#countdown')
+const displayMessageEl = document.querySelector('#message')
+const boardEl = document.querySelector('#board')
+const squareEls = document.querySelectorAll('.square')
+const countdownEl = document.querySelector('#countdown')
 // console.log(squareEls[2])
  
 
 //------------------Functions-------------------------------- 
 
- 
+// ---------------Global Statement---------------------------
+if (countdown === 0){
+    displayMessageEle.innerHtml = 'this is up, you lost'
+
+}
 
 // invoke the init function:  
 const init = () => {
@@ -68,26 +72,54 @@ const init = () => {
     // message = ''
     // win = false
     // mistakes = 0
-    getAllBoardPositions()
+    // getAllBoardPositions()
+    boardEl.classList.remove('disabled')
+    countdownTimer(30)
 
 }
 
 
 // add to init function
-const getAllBoardPositions = () => {
-    console.log('getAllBoardPositions completed')
-    allBoardPositions = []
-    winningCombos.map((combo) => {
-        combo.map(position => allBoardPositions.push(position))
-    })
-}
+// const getAllBoardPositions = () => {
+//     console.log('getAllBoardPositions completed')
+//     allBoardPositions = []
+//     winningCombos.map((combo) => {
+//         combo.map(position => allBoardPositions.push(position))
+//     })
+// }
 
 // INITIATE GAME
 // set all variables to initial state:  
 // set countdown to 30 seconds; 
 //set winner to false
 init()
- 
+
+// Code a countdown timer
+// add this function to the INIT function with the intended seconds
+// the time left variable is a number that is in the gobal scope 
+// if Matched add to the timeLeft Global variable x seconds
+function countdownTimer (seconds) {
+    // setting up the countdown second
+    timeLeft = seconds
+    intervalId = setInterval(countdown, 1000)    
+    return 'the countdown starting up'
+}
+
+function  countdown  () {
+    if(timeLeft === 0){
+        countdownEl.innerHTML = `Time is up!`
+        displayMessageEl.innerHTML = 'Time is up, you lost!'
+        boardEl.classList.toggle('disabled')
+
+        clearInterval(intervalId)
+    }else { 
+        console.log(timeLeft)
+        timeLeft--
+        countdownEl.innerHTML = ` ${timeLeft} seconds left!`
+        console.log("seconds left =", timeLeft)    
+    } 
+}
+
 
 // using the event listeners setup, assign the player's choice to the player's choice variable 
 // Get the event's ID
@@ -239,35 +271,12 @@ const resetPlayerChoicesArr = () => {
 
  
 
-// Code a countdown timer
-// add this function to the INIT function with the intended seconds
-// the time left variable is a number that is in the gobal scope 
-// if Matched add to the timeLeft Global variable x seconds
- const countdownTimer = (seconds) => {
-    // setting up the countdown second
-    timeLeft = seconds
-    intervalId = setInterval(countdown, 1000)    
-    return 'the countdown starting up'
-}
 
-function  countdown  () {
-    if(timeLeft === 0){
-        clearInterval(intervalId)
-    }else { 
-        console.log(timeLeft)
-        timeLeft--
-        countdownEl.innerHTML = timeLeft
-        console.log("seconds left =", timeLeft)    
-    } 
-}
 // console.log(countdownTimer(10))
 // Render message to player. 
 const render = () => {
-    // displayMessageEle.innerHtml = message
+    // when countdown reaches zero: 
 } 
- 
-
-// when countdown reaches zero: 
 
 // IF Board is incomplete set looser to true and set message variable to "you lost, try again"  
 
