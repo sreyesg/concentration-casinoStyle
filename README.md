@@ -22,5 +22,3 @@ JavasScript, HTML, CSS, etc.
 
 ### Future Enhancements
 Add a leader board to track scores and randomize emojis order at the beginning of every game.  
-
-![image](https://github.com/user-attachments/assets/3d646cfa-2c2b-4937-9c6e-95492a8a8900)
