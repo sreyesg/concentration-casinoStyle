@@ -25,18 +25,19 @@ let winningCombos = [
 //------------------State Variables-------------------------- 
 
   
-let userChoice
+// let userChoice
 let playerChoichesArr = []
 let matchedPair = false
 let message
 let win
 let lose
-let mistakesCounter
+let mistakesCounter = 0
 let playerChoiceId
 let allBoardPositions = []
 let timeLeft 
 let intervalId 
-
+// let notIncludedInCombo = 0
+let previousWinCombos = 8
 //define variable for user's choice 
 //define variable for countdown 
 //define variable for message 
@@ -54,16 +55,10 @@ const displayMessageEl = document.querySelector('#message')
 const boardEl = document.querySelector('#board')
 const squareEls = document.querySelectorAll('.square')
 const countdownEl = document.querySelector('#countdown')
-// console.log(squareEls[2])
- 
+const StartGameEl = document.querySelector('#btnStartGame') 
 
 //------------------Functions-------------------------------- 
 
-// ---------------Global Statement---------------------------
-if (countdown === 0){
-    displayMessageEle.innerHtml = 'this is up, you lost'
-
-}
 
 // invoke the init function:  
 const init = () => {
@@ -71,10 +66,10 @@ const init = () => {
     // countdown = 0
     // message = ''
     // win = false
-    // mistakes = 0
-    // getAllBoardPositions()
+    mistakesCounter = 0
     boardEl.classList.remove('disabled')
-    countdownTimer(30)
+
+    // countdownTimer(30)
 
 }
 
@@ -113,10 +108,10 @@ function  countdown  () {
 
         clearInterval(intervalId)
     }else { 
-        console.log(timeLeft)
+        // console.log(timeLeft)
         timeLeft--
         countdownEl.innerHTML = ` ${timeLeft} seconds left!`
-        console.log("seconds left =", timeLeft)    
+        // console.log("seconds left =", timeLeft)    
     } 
 }
 
@@ -131,6 +126,7 @@ const getPlayerChoiceId = (event) => {
 // Using the event ID display the Card
 const displayCard = () => {
     squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
+    
 }
 
 // after two player's clicks: 
@@ -164,10 +160,13 @@ const checkForMatchedPair = (event) => {
                     
                 // }
                 displayMessageEl.innerHTML = 'Wrong Guess!!'
-            }
-        })           
+                // notIncludedInCombo += 1
                 
+            }
+        })      
+            
     }
+    // console.log("NOT INCLUDED VALUE >>>", notIncludedInCombo)    
 }
 
 // Delete the matched pair position from the Winning Combos array
@@ -181,7 +180,7 @@ const updateWinCombosArr = () => {
     
     }else {
         console.log('BEFORE POPPING>>>')
-        console.table(winningCombos)
+        // console.table(winningCombos)
         console.log('arrPlayerChoices ****', playerChoichesArr)
 
         winningCombos = winningCombos.filter((combo, idx) => {
@@ -196,7 +195,7 @@ const updateWinCombosArr = () => {
             // return true
         })
         // console.table(foundIdx)
-    console.table(winningCombos)
+    // console.table(winningCombos)
     }
     
 }
@@ -223,11 +222,23 @@ const updateBoard = () => {
     //THEN set win to true 
 
 const isBoardCompleted = () => {
-    console.log(winningCombos.length)
+    // console.log(winningCombos.length)
     if (winningCombos.length === 0){
         win = true
         console.log(win)
     }
+}
+
+// Update mistakesCounter
+const updateMistakesCounter = () => {
+    console.log('winCombosat223', winningCombos.length)
+    if (playerChoichesArr.length < 2) {
+        return
+    }else if(winningCombos.length === previousWinCombos){
+        mistakesCounter += 1
+        
+    } 
+    console.log("UPDATE MISTAKESCOUNTER", mistakesCounter)
 }
 
 // render the game message to the DOM 
@@ -253,7 +264,10 @@ const resetPlayerChoicesArr = () => {
         console.log('playerChoichesArr is greater 2', playerChoichesArr)
         playerChoichesArr = [] 
         matchedPair = false
-        console.log('empty PlayerChoicesArr >>>>', playerChoichesArr.length)
+        previousWinCombos = winningCombos.length
+        console.log('PREVIOUS COMBO VALUE IS .>>' , previousWinCombos)
+        notIncludedInCombo = 0
+        // console.log('empty PlayerChoicesArr >>>>', playerChoichesArr.length)
 
     }
 }
@@ -268,7 +282,13 @@ const resetPlayerChoicesArr = () => {
 // check mistakes 
 // IF mistakes variable is less than 2 return/continue game 
 //ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
-
+const checkForloose = () => {
+    
+    if (mistakesCounter === 3){
+        boardEl.classList.toggle('disabled')
+        displayMessageEl.innerHTML = 'Good try! Better luck next time.'
+    }
+}
  
 
 
@@ -287,11 +307,13 @@ const playGame = (event) => {
     collectPlayerChoices()
     checkForMatchedPair(event)
     updateWinCombosArr()
+    updateMistakesCounter()
     updateBoard()
     isBoardCompleted()
     updateMessage()
     resetPlayerChoicesArr()
     finalMessage()
+    checkForloose()
     // render()
     // checkCountDown()
 } 
@@ -299,6 +321,7 @@ const playGame = (event) => {
 //----------------Event listeners----------------------------- 
 
 boardEl.addEventListener('click', playGame)
+StartGameEl.addEventListener('click', init)
 // Delegated: add event listener to the parent element containing all the squares 
 
 // add event listener to startGame the timer button 
