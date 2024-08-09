@@ -5,18 +5,15 @@ Challenge your memory with this classic matching pairs game _casino_ _style_. Th
 
 
 ### Getting Started 
-// Link to deployed game
+[Link to game](Link to deployed game)
+
+[Planning materials](./project-planning/Concentration-Casino-Style.pdf)
 
 * __Win/lose rules__
     * The player wins when all the pairs in the board are found withing 60 seconds.
     * The player loses if the board is not completed Whitin 60 seconds or,
     * The player loses after 8 wrong guesses.
 
-
-	
-### Attributions
-
-Image link
 
 ### Technologies Used
 JavasScript, HTML, CSS, etc. 
