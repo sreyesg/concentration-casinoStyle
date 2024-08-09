@@ -37,7 +37,7 @@ let allBoardPositions
 let timeLeft 
 let intervalId 
 // let notIncludedInCombo = 0
-let previousWinCombos 
+let previousWinCombos
 //define variable for user's choice 
 //define variable for countdown 
 //define variable for message 
@@ -63,17 +63,14 @@ const mistakesEl = document.querySelector('#mistakes')
 
 // invoke the init function:  
 const init = () => {
-    let playerChoichesArr = []
-    let matchedPair = false
-    let message
-    let win = false
+    playerChoichesArr = []
+    matchedPair = false
+    message = ''
+    win = false
     // let lose
-    let mistakesCounter = 0
-    let playerChoiceId
-    let allBoardPositions = []
-    let timeLeft 
-    let intervalId 
-    let previousWinCombos = 8
+    mistakesCounter = 0
+    allBoardPositions = [] 
+    previousWinCombos = 8
     boardEl.classList.remove('disabled')
 
     countdownTimer(30)
@@ -86,7 +83,7 @@ const init = () => {
 // set all variables to initial state:  
 // set countdown to 30 seconds; 
 //set winner to false
-init()
+// init()
 
 // Code a countdown timer
 // add this function to the INIT function with the intended seconds
@@ -315,10 +312,9 @@ const playGame = (event) => {
 // Delegated: add event listener to the parent element containing all the squares 
 boardEl.addEventListener('click', playGame)
 
-// add event listener to startGame the timer button 
+// add event listener to reset button 
 StartGameEl.addEventListener('click', init)
 
-// add event listener to reset button 
 
  
 
