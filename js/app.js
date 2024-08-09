@@ -3,29 +3,20 @@
 
 
 //define a constant variable for winningcombos 
-let winningCombos = [
-    [3,14], 
-    [1,8], 
-    [5,12], 
-    [6,13], 
-    [0,15],
-    [10,11],
-    [2,7],
-    [4,9]
-]
+
 // console.table(winningCombos)
 // const iconsCollection
 // update card images dynamically
 // make winnigCombos a biproduct of dynamicaally updating cardImages
 // explore .sort() method
- const cardImages = ['🎲','🎰','🂷','🍀','♣️','💰','🃏','🂷','🎰','♣️','🃑','🃑','💰','🃏','🍀','🎲']
-
  
+const cardImages = ['🎲','🎰','🂷','🍀','♣️','💰','🃏','🂷','🎰','♣️','🃑','🃑','💰','🃏','🍀','🎲']
 
 //------------------State Variables-------------------------- 
 
   
 // let userChoice
+let winningCombos
 let playerChoichesArr 
 let matchedPair 
 let message
@@ -65,16 +56,35 @@ const mistakesEl = document.querySelector('#mistakes')
 const init = () => {
     playerChoichesArr = []
     matchedPair = false
-    message = ''
+    displayMessageEl.innerHTML = 'Good Luck!!'
+    mistakesEl.innerHTML = ''
     win = false
     // let lose
-    mistakesCounter = 0
-    allBoardPositions = [] 
+    mistakesCounter = 0 
     previousWinCombos = 8
     boardEl.classList.remove('disabled')
+    countdownTimer(50)
+    winningCombos = [
+        [3,14], 
+        [1,8], 
+        [5,12], 
+        [6,13], 
+        [0,15],
+        [10,11],
+        [2,7],
+        [4,9]
+    ]
+    resetBoard()
+}
 
-    countdownTimer(30)
-
+const resetBoard = () => {
+        
+    winningCombos.map((combo) => {
+        combo.map((position) => {
+            // console.log('winAtThisPosition', position)
+            squareEls[position].innerHTML = '-'
+        })           
+    })
 }
 
 
@@ -276,19 +286,14 @@ const resetPlayerChoicesArr = () => {
     //ELSE set looser to true and set message variable to "you reached two mistakes, you lost. Please try again" 
 const checkForloose = () => {
     
-    if (mistakesCounter === 4){
+    if (mistakesCounter === 8){
         boardEl.classList.toggle('disabled')
-        displayMessageEl.innerHTML = 'Good try! Better luck next time.'
+        displayMessageEl.innerHTML = "Good try! \nBetter luck next time."
+        clearInterval(intervalId)
     }
 }
  
 
-
-// console.log(countdownTimer(10))
-// Render message to player. 
-// const render = () => {
-//     // when countdown reaches zero: 
-// } 
 
 const playGame = (event) => {
     getPlayerChoiceId(event) 

@@ -52,6 +52,7 @@ h1 {
 }
 #leftSubSection {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -96,4 +97,12 @@ h1 {
     font-weight: bold;
     color: white;
     background-color: rgba(0,0,0,0.5);
+}
+#instructions {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 5px;
+    padding: 10px;
 }
