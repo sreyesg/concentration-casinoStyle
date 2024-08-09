@@ -12,6 +12,7 @@ Challenge your memory with this classic matching pairs game _casino_ _style_. Th
     * The player loses if the board is not completed Whitin 60 seconds or,
     * The player loses after 8 wrong guesses.
 
+
 	
 ### Attributions
 
@@ -21,4 +22,5 @@ Image link
 JavasScript, HTML, CSS, etc. 
 
 ### Future Enhancements
-Add a leader board to track scores and randomize emojis order at the beginning of every game.  
+* Add a leader board to track scores
+* Randomize emojis order at the beginning of every game.  
