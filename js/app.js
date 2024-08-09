@@ -63,7 +63,7 @@ const init = () => {
     mistakesCounter = 0 
     previousWinCombos = 8
     boardEl.classList.remove('disabled')
-    countdownTimer(50)
+    countdownTimer(60)
     winningCombos = [
         [3,14], 
         [1,8], 
