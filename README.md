@@ -1,6 +1,6 @@
 # Concentration Casino Style
 
-[Concentration](./images/Concentration-casinoStyle.jpg)
+![concentration-casinoStyle](./images/Concentration-casinoStyle.jpg)
 Challenge your memory with this classic matching pairs game _casino_ _style_. The objective of the game is to find all the matching pairs in the shortest time or with the fewest moves. It is a great game to improve memory and concentration skills. 
 
 
