@@ -35,8 +35,8 @@ winningCombos = [
     [4,9]
 ]
 
-winningCombos.map((combo, idx1) => {
-    combo.map((position, idx) => {
+winningCombos.map((combo) => {
+    combo.map((position) => {
         squareEls[position].innerHTML = cardImages[position]
     })
 })
@@ -78,19 +78,13 @@ const resetBoard = () => {
 }
 
 
-
-// INITIATE GAME
-    // set all variables to initial state:  
-    // set countdown to 30 seconds; 
-    //set winner to false
     
-
 // Code a countdown timer
 // add this function to the INIT function with the intended seconds
 // the time left variable is a number that is in the gobal scope 
 // if Matched add to the timeLeft Global variable x seconds
 function countdownTimer (seconds) {
-    // setting up the countdown second
+    
     timeLeft = seconds
     intervalId = setInterval(countdown, 1000)    
     return 'the countdown starting up'
@@ -104,10 +98,9 @@ function  countdown  () {
 
         clearInterval(intervalId)
     }else { 
-        // console.log(timeLeft)
+        
         timeLeft--
         countdownEl.innerHTML = ` ${timeLeft} seconds left!`
-        // console.log("seconds left =", timeLeft)    
     } 
 }
 
@@ -126,15 +119,14 @@ const displayCard = () => {
 }
 
 // after two player's clicks: 
-// compare the first and second choices with the winning combos 
-// IF the set matches any winning combo 
-    //THEN keep the choices visible 
+    // compare the first and second choices with the winning combos 
+    // IF the set matches any winning combo 
+        //THEN keep the choices visible 
     //ELSE hide choices and add 1 to the mistakes variable and render a message  
 
 const collectPlayerChoices = () => {
     playerChoichesArr.push(playerChoiceId)
     
-    // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
 // Check for Matched Pair when PlayerChoicesArr.lenght < 2 
 const checkForMatchedPair = (event) => {
@@ -143,18 +135,14 @@ const checkForMatchedPair = (event) => {
         return
     }else {
         winningCombos.map((combo) => {
-            // console.log(combo)
+            
             let checkIsInWinCombo = choice => combo.includes(choice)
             if(playerChoichesArr.every(checkIsInWinCombo)){
                 console.log('that is a matching pair')
                 matchedPair = true
-                // console.log(matchedPair)
+               
             }else {
-                // const playerChoicesObj = {playerChoichesArr,
-                //     firstGuess: squareEls[playerChoichesArr[0]].textContent,
-                //     secondGuess: squareEls[playerChoichesArr[1]].textContent,
-                    
-                // }
+               
                 displayMessageEl.innerHTML = 'Wrong Guess!!'
                 // notIncludedInCombo += 1
                 
@@ -297,8 +285,6 @@ const playGame = (event) => {
     resetPlayerChoicesArr()
     finalMessage()
     checkForloose()
-    // render()
-    // checkCountDown()
 } 
 
 //----------------Event listeners----------------------------- 
@@ -313,5 +299,9 @@ StartGameEl.addEventListener('click', init)
  
 
  
-
- 
+// -------graveyard-------------------------------------------
+  // const playerChoicesObj = {playerChoichesArr,
+                //     firstGuess: squareEls[playerChoichesArr[0]].textContent,
+                //     secondGuess: squareEls[playerChoichesArr[1]].textContent,
+                    
+                // }
