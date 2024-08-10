@@ -1,21 +1,6 @@
- console.log('sanity check')
-//------------------------jS---------------------------------- 
-
-
-//define a constant variable for winningcombos 
-
-// console.table(winningCombos)
-// const iconsCollection
-// update card images dynamically
-// make winnigCombos a biproduct of dynamicaally updating cardImages
-// explore .sort() method
  
 const cardImages = ['🎲','🎰','🂷','🍀','♣️','💰','🃏','🂷','🎰','♣️','🃑','🃑','💰','🃏','🍀','🎲']
 
-//------------------State Variables-------------------------- 
-
-  
-// let userChoice
 let winningCombos
 let playerChoichesArr 
 let matchedPair 
@@ -27,21 +12,9 @@ let playerChoiceId
 let allBoardPositions  
 let timeLeft 
 let intervalId 
-// let notIncludedInCombo = 0
 let previousWinCombos
-//define variable for user's choice 
-//define variable for countdown 
-//define variable for message 
-//define variable for win 
-//define variable for lose 
-//define variable for mistakes 
 
 
-//-----------------Cache elements-------------------------- 
-
- 
-
-//Select the results displayed message 
 const displayMessageEl = document.querySelector('#message')
 const boardEl = document.querySelector('#board')
 const squareEls = document.querySelectorAll('.square')
@@ -49,8 +22,8 @@ const countdownEl = document.querySelector('#countdown')
 const StartGameEl = document.querySelector('#btnStartGame') 
 const mistakesEl = document.querySelector('#mistakes')
 
-//------------------Functions-------------------------------- 
 
+// On load
 winningCombos = [
     [3,14], 
     [1,8], 
@@ -62,15 +35,20 @@ winningCombos = [
     [4,9]
 ]
 
+winningCombos.map((combo, idx1) => {
+    combo.map((position, idx) => {
+        squareEls[position].innerHTML = cardImages[position]
+    })
+})
 
-// invoke the init function:  
+
+// Define init
 const init = () => {
     playerChoichesArr = []
     matchedPair = false
     displayMessageEl.innerHTML = 'Good Luck!!'
     mistakesEl.innerHTML = ''
     win = false
-    // let lose
     mistakesCounter = 0 
     previousWinCombos = 8
     boardEl.classList.remove('disabled')
@@ -88,22 +66,12 @@ const init = () => {
     resetBoard()
 }
 
-// onLoad 
-winningCombos.map((combo, idx1) => {
-    // console.log(combo, idx1)
-    // console.log(idx1)
-    combo.map((position, idx) => {
-        console.log(position)
-        squareEls[position].innerHTML = cardImages[position]
-    })
-})
 
 
 const resetBoard = () => {
         
     winningCombos.map((combo) => {
         combo.map((position) => {
-            // console.log('winAtThisPosition', position)
             squareEls[position].innerHTML = '-'
         })           
     })
@@ -112,10 +80,10 @@ const resetBoard = () => {
 
 
 // INITIATE GAME
-// set all variables to initial state:  
-// set countdown to 30 seconds; 
-//set winner to false
-// init()
+    // set all variables to initial state:  
+    // set countdown to 30 seconds; 
+    //set winner to false
+    
 
 // Code a countdown timer
 // add this function to the INIT function with the intended seconds
@@ -165,7 +133,7 @@ const displayCard = () => {
 
 const collectPlayerChoices = () => {
     playerChoichesArr.push(playerChoiceId)
-    console.log('array of player choices ---->', playerChoichesArr)
+    
     // console.log('this is choices collection inside check winning', playerChoichesArr)
 }
 // Check for Matched Pair when PlayerChoicesArr.lenght < 2 
@@ -236,7 +204,6 @@ const updateBoard = () => {
         
         winningCombos.map((combo) => {
             combo.map((position) => {
-                // console.log('winAtThisPosition', position)
                 squareEls[position].innerHTML = '-'
             })           
         })
