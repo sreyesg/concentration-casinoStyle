@@ -33,6 +33,7 @@ winningCombos = [
     [4,9]
 ]
 
+// map over nested array to display all images
 winningCombos.map((combo) => {
     combo.map((position) => {
         squareEls[position].innerHTML = boardImages[position]
@@ -40,7 +41,7 @@ winningCombos.map((combo) => {
 })
 
 
-// Define init
+// init definition
 const init = () => {
     playerChoichesArr = []
     matchedPair = false
@@ -51,16 +52,6 @@ const init = () => {
     previousWinCombos = 8
     boardEl.classList.remove('disabled')
     countdownTimer(60)
-    winningCombos = [
-        [3,14], 
-        [1,8], 
-        [5,12], 
-        [6,13], 
-        [0,15],
-        [10,11],
-        [2,7],
-        [4,9]
-    ]
     resetBoard()
 }
 
@@ -77,7 +68,7 @@ const resetBoard = () => {
 
 
     
-// Code a countdown timer
+// countdown
 function countdownTimer (seconds) {
     
     timeLeft = seconds
@@ -90,7 +81,6 @@ function  countdown  () {
         countdownEl.innerHTML = `Time is up!`
         displayMessageEl.innerHTML = 'Time is up, you lost!'
         boardEl.classList.toggle('disabled')
-
         clearInterval(intervalId)
     }else { 
         
@@ -124,7 +114,7 @@ const collectPlayerChoices = () => {
     
 }
 // Check for Matched Pair when PlayerChoicesArr.lenght < 2 
-const checkForMatchedPair = (event) => {
+const checkForMatchedPair = () => {
     
     if (playerChoichesArr.length < 2){
         return
@@ -138,16 +128,14 @@ const checkForMatchedPair = (event) => {
             }else {
                
                 displayMessageEl.innerHTML = 'Wrong Guess!!'
-                // notIncludedInCombo += 1
                 
             }
         })      
             
-    }
-    // console.log("NOT INCLUDED VALUE >>>", notIncludedInCombo)    
+    }  
 }
 
-// Delete the matched pair position from the Winning Combos array
+// Delete the matched pair index from the Winning Combos array
 const updateWinCombosArr = () => {
     
     if (matchedPair === false){
@@ -261,7 +249,7 @@ const playGame = (event) => {
     getPlayerChoiceId(event) 
     displayImage()
     collectPlayerChoices()
-    checkForMatchedPair(event)
+    checkForMatchedPair()
     updateWinCombosArr()
     updateMistakesCounter()
     updateBoard()
