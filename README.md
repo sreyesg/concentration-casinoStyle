@@ -6,7 +6,7 @@ Challenge your memory with this classic matching pairs game _casino_ _style_. Th
 
 
 ### Getting Started 
-[Link to game](Link to deployed game)
+[Play me](https://sreyesg.github.io/concentration-casinoStyle/)
 
 [Planning materials](./project-planning/Concentration-Casino-Style.pdf)
 
