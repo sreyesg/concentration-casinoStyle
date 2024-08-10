@@ -1,15 +1,13 @@
  
-const cardImages = ['🎲','🎰','🂷','🍀','♣️','💰','🃏','🂷','🎰','♣️','🃑','🃑','💰','🃏','🍀','🎲']
+const boardImages = ['🎲','🎰','🂷','🍀','♣️','💰','🃏','🂷','🎰','♣️','🃑','🃑','💰','🃏','🍀','🎲'] 
 
 let winningCombos
 let playerChoichesArr 
 let matchedPair 
 let message
 let win
-let lose
 let mistakesCounter 
 let playerChoiceId
-let allBoardPositions  
 let timeLeft 
 let intervalId 
 let previousWinCombos
@@ -37,7 +35,7 @@ winningCombos = [
 
 winningCombos.map((combo) => {
     combo.map((position) => {
-        squareEls[position].innerHTML = cardImages[position]
+        squareEls[position].innerHTML = boardImages[position]
     })
 })
 
@@ -80,9 +78,6 @@ const resetBoard = () => {
 
     
 // Code a countdown timer
-// add this function to the INIT function with the intended seconds
-// the time left variable is a number that is in the gobal scope 
-// if Matched add to the timeLeft Global variable x seconds
 function countdownTimer (seconds) {
     
     timeLeft = seconds
@@ -113,8 +108,8 @@ const getPlayerChoiceId = (event) => {
 }
 
 // Using the event ID display the Card
-const displayCard = () => {
-    squareEls[playerChoiceId].innerHTML = cardImages[playerChoiceId]
+const displayImage = () => {
+    squareEls[playerChoiceId].innerHTML = boardImages[playerChoiceId]
     
 }
 
@@ -130,7 +125,7 @@ const collectPlayerChoices = () => {
 }
 // Check for Matched Pair when PlayerChoicesArr.lenght < 2 
 const checkForMatchedPair = (event) => {
-    console.log(playerChoichesArr)
+    
     if (playerChoichesArr.length < 2){
         return
     }else {
@@ -138,7 +133,6 @@ const checkForMatchedPair = (event) => {
             
             let checkIsInWinCombo = choice => combo.includes(choice)
             if(playerChoichesArr.every(checkIsInWinCombo)){
-                console.log('that is a matching pair')
                 matchedPair = true
                
             }else {
@@ -163,23 +157,17 @@ const updateWinCombosArr = () => {
         return
     
     }else {
-        console.log('BEFORE POPPING>>>')
-        // console.table(winningCombos)
-        console.log('arrPlayerChoices ****', playerChoichesArr)
 
         winningCombos = winningCombos.filter((combo, idx) => {
             let [value1, value2] = playerChoichesArr
-            // console.log('this is the combo to analize', combo)
-            // console.log('destructuring choice', {value1, value2})
             let [combo1, combo2] = combo
-            // console.log('distructuring combo', {combo1, combo2})
+            
             if (combo1 !== value1 && combo2 !== value2){
                 return true
             }
-            // return true
+        
         })
-        // console.table(foundIdx)
-    // console.table(winningCombos)
+        
     }
     
 }
@@ -205,30 +193,28 @@ const updateBoard = () => {
     //THEN set win to true 
 
 const isBoardCompleted = () => {
-    // console.log(winningCombos.length)
+    
     if (winningCombos.length === 0){
         win = true
         clearInterval(intervalId)
-        console.log(win)
     }
 }
 
 // Update mistakesCounter
 const updateMistakesCounter = () => {
-    console.log('winCombosat223', winningCombos.length)
+    
     if (playerChoichesArr.length < 2) {
         return
     }else if(winningCombos.length === previousWinCombos){
         mistakesCounter += 1
         
     } 
-    console.log("UPDATE MISTAKESCOUNTER", mistakesCounter)
     mistakesEl.innerHTML = `${mistakesCounter} mistake(s)`
 }
 
 // render the game message to the DOM 
 const updateMessage = () => {
-    console.log(matchedPair)
+    
     if (matchedPair === true){
         displayMessageEl.innerHTML = 'Pair Unlocked!'
     }
@@ -246,12 +232,11 @@ const resetPlayerChoicesArr = () => {
     if (playerChoichesArr.length < 2) {
         return
     }else {
-        console.log('playerChoichesArr is greater 2', playerChoichesArr)
+        
         playerChoichesArr = [] 
         matchedPair = false
         previousWinCombos = winningCombos.length
-        console.log('PREVIOUS COMBO VALUE IS .>>' , previousWinCombos)
-        notIncludedInCombo = 0
+        
         // console.log('empty PlayerChoicesArr >>>>', playerChoichesArr.length)
 
     }
@@ -274,7 +259,7 @@ const checkForloose = () => {
 
 const playGame = (event) => {
     getPlayerChoiceId(event) 
-    displayCard()
+    displayImage()
     collectPlayerChoices()
     checkForMatchedPair(event)
     updateWinCombosArr()
